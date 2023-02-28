@@ -1,0 +1,26 @@
+From: Jeremy Bicha <jbicha@debian.org>
+Date: Wed, 23 Feb 2022 07:36:28 -0500
+Subject: Revert "meson.build: Use environment to make warnings fatal"
+
+This reverts commit 6ff47626282dfbeb74129912a9f658a293ba7825.
+
+This made one of the build tests fail for us. Needs more investigation.
+---
+ src/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/meson.build b/src/meson.build
+index cfd56ee..11e7a04 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -324,9 +324,9 @@ if get_option('tests') == 'all'
+     'nautilus', nautilus,
+     args: [
+       '--check',
++      '--g-fatal-warnings'
+     ],
+     env: [
+-      'G_DEBUG=fatal-warnings',
+       'GSETTINGS_SCHEMA_DIR=@0@'.format(join_paths(meson.build_root(), 'data'))
+     ]
+   )

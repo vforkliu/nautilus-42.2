@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.0 -->
+<interface>
+  <menu id="zoom_section">
+    <item>
+      <attribute name="label" translatable="yes">Zoom out</attribute>
+      <attribute name="action">view.zoom-out</attribute>
+      <attribute name="verb-icon">zoom-out-symbolic</attribute>
+    </item>
+    <item>
+      <!-- This label is a placeholder. The view is going to replace it with a
+           percentage, like this:   [ - | 100% | + ]                       -->
+      <attribute name="label" translatable="yes">Reset zoom</attribute>
+      <attribute name="action">view.zoom-standard</attribute>
+    </item>
+    <item>
+      <attribute name="label" translatable="yes">Zoom in</attribute>
+      <attribute name="action">view.zoom-in</attribute>
+      <attribute name="verb-icon">zoom-in-symbolic</attribute>
+    </item>
+  </menu>
+  <menu id="sort_section">
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">name</attribute>
+      <attribute name="label" translatable="yes" context="Sort Criterion" comments="This is used to sort by name in the toolbar view menu">_A-Z</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">name-desc</attribute>
+      <attribute name="label" translatable="yes" context="Sort Criterion" comments="This is used to sort by name, in descending order in the toolbar view menu">_Z-A</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">modification-date-desc</attribute>
+      <attribute name="label" translatable="yes">Last _Modified</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">modification-date</attribute>
+      <attribute name="label" translatable="yes">_First Modified</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">size</attribute>
+      <attribute name="label" translatable="yes">_Size</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">type</attribute>
+      <attribute name="label" translatable="yes">_Type</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+    <item>
+      <attribute name="action">view.sort</attribute>
+      <attribute name="target">trash-time</attribute>
+      <attribute name="label" translatable="yes">Last _Trashed</attribute>
+      <attribute name="hidden-when">action-disabled</attribute>
+    </item>
+  </menu>
+</interface>

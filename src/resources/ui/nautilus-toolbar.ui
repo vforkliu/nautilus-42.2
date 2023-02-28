@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.0 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkPopover" id="back_menu">
+    <property name="position">bottom</property>
+    <property name="relative-to">back_button</property>
+  </object>
+  <object class="GtkPopover" id="forward_menu">
+    <property name="position">bottom</property>
+    <property name="relative-to">forward_button</property>
+  </object>
+  <menu id="view_menu">
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <!--
+           Zoom section.
+
+           The toolbar code assumes this is the first item of this menu model.
+           Its contents is provided by the view.
+      -->
+    </section>
+    <section>
+      <attribute name="label" translatable="yes" context="menu item" comments="Translators: a menu item in a group of sorting options in a toolbar menu, with criterions such as &quot;A-Z&quot; or &quot;Last Modified&quot;.">Sort</attribute>
+      <!--
+           Sort section.
+
+           The toolbar code assumes this is the second item of this menu model.
+           Its contents is provided by the view.
+      -->
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Visible Columns…</attribute>
+        <attribute name="action">view.visible-columns</attribute>
+        <attribute name="hidden-when">action-missing</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">R_eload</attribute>
+        <attribute name="action">win.reload</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">St_op</attribute>
+        <attribute name="action">win.stop</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="app_menu">
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+        <attribute name="verb-icon">window-new-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Tab</attribute>
+        <attribute name="action">win.new-tab</attribute>
+        <attribute name="verb-icon">tab-new-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Folder</attribute>
+        <attribute name="action">view.new-folder</attribute>
+        <attribute name="verb-icon">folder-new-symbolic</attribute>
+      </item>
+    </section>
+    <section id="undo_redo_section">
+      <!-- Note: This section is often recreated by undo_manager_changed() to
+           change the labels of the actions. If you change anything here,
+           remember to change in the code as well. -->
+      <item>
+        <attribute name="label" translatable="yes">_Undo</attribute>
+        <attribute name="action">win.undo</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Redo</attribute>
+        <attribute name="action">win.undo</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Show _Hidden Files</attribute>
+        <attribute name="action">view.show-hidden-files</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Show _Sidebar</attribute>
+        <attribute name="action">app.show-hide-sidebar</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">app.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About Files</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <object class="GtkPopover" id="operations_popover">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hscrollbar_policy">never</property>
+        <property name="max_content_height">270</property>
+        <property name="propagate_natural_height">True</property>
+        <child>
+          <object class="GtkListBox" id="operations_list">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
+            <property name="margin_top">6</property>
+            <property name="margin_bottom">6</property>
+            <property name="selection-mode">none</property>
+            <property name="activate-on-single-click">False</property>
+            <style>
+              <class name="operations-list"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <template class="NautilusToolbar" parent="HdyHeaderBar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="show_close_button">True</property>
+    <child type="title">
+      <object class="GtkBox" id="header_toolbar">
+        <property name="width_request">270</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkStack" id="toolbar_switcher">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="valign">center</property>
+            <property name="hexpand">False</property>
+            <property name="transition_type">crossfade</property>
+            <child>
+              <object class="GtkBox" id="path_bar_container">
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="name">pathbar</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="location_entry_container">
+                <property name="can_focus">False</property>
+                <style>
+                  <class name="linked"/>
+                </style>
+              </object>
+              <packing>
+                <property name="name">location</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="search_container">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+              </object>
+              <packing>
+                <property name="name">search</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="search_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Search</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="action_name">slot.search-visible</property>
+            <child>
+              <object class="GtkImage" id="search_icon">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-find-symbolic</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="navigation_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkButton" id="back_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Go back</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="action_name">win.back</property>
+            <child>
+              <object class="GtkImage" id="back_icon">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-previous-symbolic</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="forward_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="tooltip_text" translatable="yes">Go forward</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="action_name">win.forward</property>
+            <child>
+              <object class="GtkImage" id="forward_icon">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-next-symbolic</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <style>
+          <class name="linked"/>
+          <class name="raised"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_start">72</property>
+        <child>
+          <object class="GtkRevealer" id="operations_revealer">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="transition_type">slide-right</property>
+            <child>
+              <object class="GtkMenuButton" id="operations_button">
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Show operations</property>
+                <property name="margin_end">6</property>
+                <property name="popover">operations_popover</property>
+                <signal name="toggled" handler="on_operations_button_toggled" object="NautilusToolbar" swapped="yes"/>
+                <child>
+                  <object class="GtkDrawingArea" id="operations_icon">
+                    <property name="width_request">16</property>
+                    <property name="height_request">16</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <signal name="draw" handler="on_operations_icon_draw" object="NautilusToolbar" swapped="no"/>
+                  </object>
+                </child>
+                <style>
+                  <class name="button"/>
+                </style>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="margin_end">6</property>
+            <child>
+              <object class="GtkButton" id="view_toggle_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Toggle view</property>
+                <property name="action_name">slot.files-view-mode-toggle</property>
+                <child>
+                  <object class="GtkImage" id="view_toggle_icon">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_size">1</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="image-button"/>
+                </style>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="view_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes" comments="“View” is a noun">View options</property>
+                <property name="halign">start</property>
+                <property name="action_name">win.view-menu</property>
+                <property name="menu-model">view_menu</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">pan-down-symbolic</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="disclosure-button"/>
+                </style>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="app_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="menu-model">app_menu</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">open-menu-symbolic</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">3</property>
+      </packing>
+    </child>
+  </template>
+</interface>

@@ -1,0 +1,29 @@
+From: Jeremy Bicha <jbicha@debian.org>
+Date: Wed, 23 Feb 2022 08:06:34 -0500
+Subject: Restore backspace for going to parent folder
+
+This restores the behaviour from nautilus <= 3.4.
+---
+ src/nautilus-window.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/nautilus-window.c b/src/nautilus-window.c
+index f92858b..46217e3 100644
+--- a/src/nautilus-window.c
++++ b/src/nautilus-window.c
+@@ -2041,6 +2041,7 @@ const GActionEntry win_entries[] =
+     { "forward", action_forward },
+     { "back-n", action_back_n, "u" },
+     { "forward-n", action_forward_n, "u" },
++    { "backspaceup",  action_up },
+     { "up", action_up },
+     { "view-menu", action_toggle_state_view_button, NULL, "false", NULL },
+     { "current-location-menu", action_show_current_location_menu },
+@@ -2110,6 +2111,7 @@ nautilus_window_initialize_actions (NautilusWindow *window)
+     /* Support keyboard layouts which have a dead tilde key but not a tilde key. */
+     nautilus_application_set_accelerators (app, "win.prompt-home-location", ACCELS ("asciitilde", "dead_tilde"));
+     nautilus_application_set_accelerator (app, "win.current-location-menu", "F10");
++    nautilus_application_set_accelerator (app, "win.backspaceup", "BackSpace");
+     nautilus_application_set_accelerator (app, "win.restore-tab", "<shift><control>t");
+ 
+     /* Alt+N for the first 9 tabs */

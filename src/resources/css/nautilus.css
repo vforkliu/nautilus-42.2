@@ -1,0 +1,8 @@
+label.encrypted_zip,
+row.encrypted_zip label.title {
+    background-image: -gtk-icontheme('system-lock-screen-symbolic');
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 24px;
+}

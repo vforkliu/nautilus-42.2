@@ -1,0 +1,11 @@
+multiarch_fallback.patch
+Revert-meson.build-Use-environment-to-make-warnings-fatal.patch
+04_suppress_umount_in_ltsp.patch
+12_unity_launcher_support.patch
+18_unity_icon_color.patch
+ubuntu_infobars_color.patch
+ubuntu_backspace_behaviour.patch
+appstream-compulsory.patch
+nautilusgtkplacesview-show-error-if-volume-is-not-mo.patch
+ubuntu/shell-search-provider-implement-XUbuntuCancel-to-request-.patch
+CVE-2022-37290.patch

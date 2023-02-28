@@ -1,0 +1,50 @@
+From: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Date: Fri, 20 Jul 2018 03:25:37 +0200
+Subject: set the infobars type to "other" rather than "question"
+
+to avoid blue cluebars
+Bug-Ubuntu: https://launchpad.net/bugs/1259059
+---
+ src/nautilus-special-location-bar.c | 2 +-
+ src/nautilus-trash-bar.c            | 2 +-
+ src/nautilus-x-content-bar.c        | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/nautilus-special-location-bar.c b/src/nautilus-special-location-bar.c
+index ce40521..704df2b 100644
+--- a/src/nautilus-special-location-bar.c
++++ b/src/nautilus-special-location-bar.c
+@@ -189,7 +189,7 @@ GtkWidget *
+ nautilus_special_location_bar_new (NautilusSpecialLocation location)
+ {
+     return g_object_new (NAUTILUS_TYPE_SPECIAL_LOCATION_BAR,
+-                         "message-type", GTK_MESSAGE_QUESTION,
++                         "message-type", GTK_MESSAGE_OTHER,
+                          "special-location", location,
+                          NULL);
+ }
+diff --git a/src/nautilus-trash-bar.c b/src/nautilus-trash-bar.c
+index 4f19bdf..9300dba 100644
+--- a/src/nautilus-trash-bar.c
++++ b/src/nautilus-trash-bar.c
+@@ -281,6 +281,6 @@ nautilus_trash_bar_new (NautilusFilesView *view)
+ {
+     return g_object_new (NAUTILUS_TYPE_TRASH_BAR,
+                          "view", view,
+-                         "message-type", GTK_MESSAGE_QUESTION,
++                         "message-type", GTK_MESSAGE_OTHER,
+                          NULL);
+ }
+diff --git a/src/nautilus-x-content-bar.c b/src/nautilus-x-content-bar.c
+index 2613cff..1dd4166 100644
+--- a/src/nautilus-x-content-bar.c
++++ b/src/nautilus-x-content-bar.c
+@@ -349,7 +349,7 @@ nautilus_x_content_bar_new (GMount             *mount,
+                             const char * const *x_content_types)
+ {
+     return g_object_new (NAUTILUS_TYPE_X_CONTENT_BAR,
+-                         "message-type", GTK_MESSAGE_QUESTION,
++                         "message-type", GTK_MESSAGE_OTHER,
+                          "mount", mount,
+                          "x-content-types", x_content_types,
+                          NULL);
